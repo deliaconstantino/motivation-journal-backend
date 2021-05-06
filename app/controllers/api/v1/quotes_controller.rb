@@ -1,3 +1,5 @@
+require 'pry'
+
 class Api::V1::QuotesController < ApplicationController
   def index
     quotes = Quote.all
@@ -6,7 +8,10 @@ class Api::V1::QuotesController < ApplicationController
   end
 
   def show
-    quote = Quote.find(params[:id])
+    # change to def random
+    if params[:id] == "random"
+      quote = Quote.random
+    end
 
     render json: quote, status: 200
   end
