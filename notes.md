@@ -1,13 +1,13 @@
 # Model/migration creation
 
-1. create entry migration/model for journal entries:
+1. create entry migration/model for journal entries: -DONE
   - id primary key: integer
   - body: text
   - time_interval: float
   - later: has many :entries_keywords
   - later: has_many :keywords through: :entries_keywords
 
-2. create quotes migration/model
+2. create quotes migration/model -DONE
   - id primary key: integer
   - body: text
   - author: string
