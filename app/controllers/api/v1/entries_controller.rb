@@ -4,7 +4,8 @@ class Api::V1::EntriesController < ApplicationController
   def index
     entries = Entry.all
 
-    render json: entries, status: 200
+    render json: entries, include: [:keywords]
+    # status: 200
   end
 
   def show
@@ -14,18 +15,16 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def create
-    # binding.pry
     entry = Entry.new(entry_params)
 
     if entry.save
-      render json: entry
+      render json: entry, include: [:keywords]
     else
       render json: {error: "issue saving entry"}, status: 400
     end
   end
 
   def destroy
-    # binding.pry
     entry = Entry.find(params[:id])
 
     entry.destroy
@@ -36,7 +35,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:body, :time_interval)
+    params.require(:entry).permit(:body, :time_interval, :keywords_attributes)
   end
 
 end

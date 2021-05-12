@@ -34,3 +34,7 @@
 - seed data - (use dependent: destroy && <CategoryName>.destroy_all for seed data in order to reseed database w/o duplicating data)
 - rails console to check properly loaded
 - merge branch to main
+
+
+## additional
+[] add JSON serializer
