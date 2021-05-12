@@ -14,6 +14,7 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def create
+    # binding.pry
     entry = Entry.new(entry_params)
 
     if entry.save
@@ -24,9 +25,10 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def destroy
+    # binding.pry
     entry = Entry.find(params[:id])
 
-    entry.delete
+    entry.destroy
 
     render json: {entryId: entry.id}
   end
