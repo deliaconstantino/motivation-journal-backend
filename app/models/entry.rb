@@ -6,6 +6,7 @@ class Entry < ApplicationRecord
 
   accepts_nested_attributes_for :keywords
 
+
   def keywords_attributes=(params)
     name = params
     if !name.empty?

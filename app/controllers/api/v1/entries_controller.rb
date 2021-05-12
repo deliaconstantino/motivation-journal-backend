@@ -2,7 +2,17 @@ require 'pry'
 
 class Api::V1::EntriesController < ApplicationController
   def index
-    entries = Entry.all
+    if params[:q]
+      if !params[:q].empty?
+        query = params[:q].downcase.strip
+        keyword = Keyword.find_by(name: query)
+        entries = keyword.entries
+      else
+        entries = []
+      end
+    else
+      entries = Entry.all
+    end
 
     render json: entries, include: [:keywords]
     # status: 200
