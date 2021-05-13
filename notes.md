@@ -38,3 +38,4 @@
 
 ## additional
 [] add JSON serializer
+[] add basic seed data for multiple entries w/ categories
