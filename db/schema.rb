@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_202135) do
+ActiveRecord::Schema.define(version: 2021_05_11_162409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 2021_05_05_202135) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "entry_keywords", force: :cascade do |t|
+    t.bigint "entry_id", null: false
+    t.bigint "keyword_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["entry_id"], name: "index_entry_keywords_on_entry_id"
+    t.index ["keyword_id"], name: "index_entry_keywords_on_keyword_id"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "quotes", force: :cascade do |t|
     t.text "body"
     t.string "author"
@@ -29,4 +44,6 @@ ActiveRecord::Schema.define(version: 2021_05_05_202135) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "entry_keywords", "entries"
+  add_foreign_key "entry_keywords", "keywords"
 end

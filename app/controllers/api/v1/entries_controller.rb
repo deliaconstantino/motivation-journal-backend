@@ -2,9 +2,20 @@ require 'pry'
 
 class Api::V1::EntriesController < ApplicationController
   def index
-    entries = Entry.all
+    if params[:q]
+      if !params[:q].empty?
+        query = params[:q].downcase.strip
+        keyword = Keyword.find_by(name: query)
+        entries = keyword.entries
+      else
+        entries = []
+      end
+    else
+      entries = Entry.all
+    end
 
-    render json: entries, status: 200
+    render json: entries, include: [:keywords]
+    # status: 200
   end
 
   def show
@@ -17,7 +28,7 @@ class Api::V1::EntriesController < ApplicationController
     entry = Entry.new(entry_params)
 
     if entry.save
-      render json: entry
+      render json: entry, include: [:keywords]
     else
       render json: {error: "issue saving entry"}, status: 400
     end
@@ -26,7 +37,7 @@ class Api::V1::EntriesController < ApplicationController
   def destroy
     entry = Entry.find(params[:id])
 
-    entry.delete
+    entry.destroy
 
     render json: {entryId: entry.id}
   end
@@ -34,7 +45,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:body, :time_interval)
+    params.require(:entry).permit(:body, :time_interval, :keywords_attributes)
   end
 
 end

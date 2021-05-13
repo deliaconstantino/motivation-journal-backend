@@ -19,3 +19,7 @@
 # quote8 = Quote.create!(body: "Whether you think you can or think you can’t, you’re right.", author: "Henry Ford")
 # quote9 = Quote.create!(body: "Security is mostly a superstition. Life is either a daring adventure or nothing.", author: "Helen Keller")
 # quote10 = Quote.create!(body: "For every reason it’s not possible, there are hundreds of people who have faced the same circumstances and succeeded.", author: "Jack Canfield")
+
+# motivation = Keyword.create!(name: "motivation")
+# peace = Keyword.create!(name: "peace")
+# fun = Keyword.create!(name: "fun")
