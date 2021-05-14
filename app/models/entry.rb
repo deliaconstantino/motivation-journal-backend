@@ -8,9 +8,9 @@ class Entry < ApplicationRecord
 
 
   def keywords_attributes=(params)
-    name = params
+    name = params[:name].downcase.strip
     if !name.empty?
-      keyword = Keyword.find_or_create_by(name: name.downcase.strip)
+      keyword = Keyword.find_or_create_by(name: name)
       self.keywords << keyword unless self.keywords.include?(keyword)
     end
   end

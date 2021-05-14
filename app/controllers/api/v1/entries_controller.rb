@@ -25,6 +25,7 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def create
+    # binding.pry
     entry = Entry.new(entry_params)
 
     if entry.save
@@ -45,7 +46,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:body, :time_interval, :keywords_attributes)
+    params.require(:entry).permit(:body, :time_interval, :keywords_attributes => :name)
   end
 
 end
