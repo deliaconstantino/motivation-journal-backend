@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  validates :body, presence: true
+  validates :body, presence: { message: "of journal entry cannot be blank" }
 
   has_many :entry_keywords, dependent: :destroy
   has_many :keywords, through: :entry_keywords
