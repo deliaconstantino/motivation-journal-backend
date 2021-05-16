@@ -15,7 +15,6 @@ class Api::V1::EntriesController < ApplicationController
     end
 
     render json: entries, include: [:keywords]
-    # status: 200
   end
 
   def show
@@ -30,8 +29,7 @@ class Api::V1::EntriesController < ApplicationController
     if entry.save
       render json: entry, include: [:keywords]
     else
-      # render json: {message: entry.errors.full_messages }, status: 400
-      render json: entry.errors.full_messages, status: :unprocessable_entity #TODO: specific errors don't make it to front end
+      render json: entry.errors.full_messages, status: :unprocessable_entity
 
     end
   end
