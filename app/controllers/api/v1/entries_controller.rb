@@ -25,13 +25,14 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def create
-    # binding.pry
     entry = Entry.new(entry_params)
 
     if entry.save
       render json: entry, include: [:keywords]
     else
-      render json: {error: "issue saving entry"}, status: 400
+      # render json: {message: entry.errors.full_messages }, status: 400
+      render json: entry.errors.full_messages, status: :unprocessable_entity #TODO: specific errors don't make it to front end
+
     end
   end
 
