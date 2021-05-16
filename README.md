@@ -1,24 +1,23 @@
-# README
+# Motivation Journal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Motivation Journal is a Single Page Application that allows a user to set a timer for writing journal entries. Upon the completion of the timer, a user has the option to save or delete their journal entry.
 
-Things you may want to cover:
+This repo is the Rails API back end for the Motivation Journal App.
 
-* Ruby version
+The front end of the app can be found in the Github Repo: motivation-journal-frontend at https://github.com/deliaconstantino/motivation-journal-frontend with specific instructions for running the front end. Note that the back end will need to be running through Rails server in order to populate information from the database while viewing the front end.
 
-* System dependencies
+* Ruby version: '2.7.1'
 
-* Configuration
+* Rails version: '~> 6.1.3', '>= 6.1.3.1'
 
-* Database creation
+## Configuration and Database
 
-* Database initialization
+* To get started with Motivation Journal, fork and clone this app.
 
-* How to run the test suite
+* As this app uses a Postgres server, run `rails db:create` then `rails db:migration` to create a database and migrations
 
-* Services (job queues, cache servers, search engines, etc.)
+* Run `rails db:seed` to seed the database
 
-* Deployment instructions
+* Finally fire up the Rails server and your backend should be all set.
 
-* ...
+* Make sure to keep Rails server running while the app is in use, and check out the front end repo for front end information.
