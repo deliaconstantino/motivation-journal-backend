@@ -15,7 +15,6 @@ class Api::V1::EntriesController < ApplicationController
     end
 
     render json: entries, include: [:keywords]
-    # status: 200
   end
 
   def show
@@ -30,7 +29,8 @@ class Api::V1::EntriesController < ApplicationController
     if entry.save
       render json: entry, include: [:keywords]
     else
-      render json: {error: "issue saving entry"}, status: 400
+      render json: entry.errors.full_messages, status: :unprocessable_entity
+
     end
   end
 
@@ -45,7 +45,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:body, :time_interval, :keywords_attributes)
+    params.require(:entry).permit(:body, :time_interval, :keywords_attributes => :name)
   end
 
 end
