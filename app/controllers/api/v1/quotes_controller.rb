@@ -8,7 +8,6 @@ class Api::V1::QuotesController < ApplicationController
   end
 
   def show
-    # change to def random
     if params[:id] == "random"
       quote = Quote.random
     end
