@@ -12,9 +12,9 @@ The front end of the app can be found in the Github Repo: motivation-journal-fro
 
 ## Configuration and Database
 
-* To get started with Motivation Journal, fork and clone this app.
+* To get started with Motivation Journal, fork and clone this app. Then run `bundle install`.
 
-* As this app uses a Postgres server, run `rails db:create` then `rails db:migration` to create a database and migrations
+* As this app uses a Postgres server, run `rails db:create` then `rails db:migrate` to create a database and migrations
 
 * Run `rails db:seed` to seed the database
 
