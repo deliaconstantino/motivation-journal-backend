@@ -1,6 +1,6 @@
 require 'pry'
 class Api::V1::UsersController < ApplicationController
-  # before_action :authorized, except: [:create]
+  before_action :require_login, except: [:create]
 
   def create
     user = User.new(user_params)
@@ -12,14 +12,13 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # def profile
-  #   binding.pry
-  #   current_user_value = current_user()
+  def profile
+    current_user_value = current_user_id()
 
-  #   if current_user_value
-  #     render json: {user: current_user_value}, status: 200
-  #   end
-  # end
+    if current_user_value
+      render json: {user: current_user_value}, status: 200
+    end
+  end
 
   private
   def user_params

@@ -1,4 +1,5 @@
 class Api::V1::LoginController < ApplicationController
+  before_action :require_login, except: [:create]
 
   def create
     user = User.find_by(email: user_params[:email])
