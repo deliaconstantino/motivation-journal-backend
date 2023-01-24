@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :entries
-      resources :quotes
       resources :keywords
+      post '/login', to: 'login#create'
+      get '/profile', to: 'users#profile'
+      resources :users
     end
   end
 
