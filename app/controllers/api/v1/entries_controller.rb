@@ -1,20 +1,29 @@
 require 'pry'
 
 class Api::V1::EntriesController < ApplicationController
-  def index
-    if params[:q]
-      if !params[:q].empty?
-        query = params[:q].downcase.strip
-        keyword = Keyword.find_by(name: query)
-        entries = keyword.entries
-      else
-        entries = []
-      end
-    else
-      entries = Entry.all
-    end
+  before_action :require_login
 
-    render json: entries, include: [:keywords]
+  def index
+    if current_user_id
+      user = User.find_by(id: current_user_id)
+
+      if user
+        render json: user.entries, status: 200
+      end
+    end
+    # if params[:q]
+    #   if !params[:q].empty?
+    #     query = params[:q].downcase.strip
+    #     keyword = Keyword.find_by(name: query)
+    #     entries = keyword.entries
+    #   else
+    #     entries = []
+    #   end
+    # else
+    #   entries = Entry.all
+    # end
+
+    # render json: entries, include: [:keywords]
   end
 
   def show
