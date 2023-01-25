@@ -1,7 +1,7 @@
 require 'pry'
 
 class Api::V1::EntriesController < ApplicationController
-  before_action :require_login
+  # before_action :require_login
 
   def index
     if current_user_id
@@ -33,14 +33,31 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def create
-    entry = Entry.new(entry_params)
+    if current_user_id
+      user = User.find_by(id: current_user_id)
 
-    if entry.save
-      render json: entry, include: [:keywords]
-    else
-      render json: entry.errors.full_messages, status: :unprocessable_entity
+      if user
+        entry = user.entries.build(entry_params)
 
+        if entry.save
+          render json: entry, status: 200
+        else
+            render json: {errors: entry.errors.full_messages}, status: 400
+        end
+
+      # else
+      #   render json: {errors: plant.errors.full_messages}, status: 400
+      # end
+      end
     end
+    # entry = Entry.new(entry_params)
+
+    # if entry.save
+    #   render json: entry, include: [:keywords]
+    # else
+    #   render json: entry.errors.full_messages, status: :unprocessable_entity
+
+    # end
   end
 
   def destroy
@@ -54,7 +71,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:body, :time_interval, :keywords_attributes => :name)
+    params.require(:entry).permit(:body, :time_interval, :title, :keywords_attributes => :name)
   end
 
 end
