@@ -44,28 +44,30 @@ class Api::V1::EntriesController < ApplicationController
         else
             render json: {errors: entry.errors.full_messages}, status: 400
         end
-
-      # else
-      #   render json: {errors: plant.errors.full_messages}, status: 400
-      # end
       end
     end
-    # entry = Entry.new(entry_params)
+  end
 
-    # if entry.save
-    #   render json: entry, include: [:keywords]
-    # else
-    #   render json: entry.errors.full_messages, status: :unprocessable_entity
+  def update
+    if current_user_id
+      entry = Entry.find_by(id: params[:id], user_id: current_user_id)
 
-    # end
+      if entry && entry.update(entry_params)
+        render json: entry, status: 200
+      else
+        render json: {errors: entry.errors.full_messages}, status: 400
+      end
+    end
   end
 
   def destroy
-    entry = Entry.find(params[:id])
+    if current_user_id
+      entry = Entry.find_by(id: params[:id], user_id: current_user_id)
 
-    entry.destroy
+      entry.destroy
 
-    render json: {entryId: entry.id}
+    render status: 204
+    end
   end
 
   private
