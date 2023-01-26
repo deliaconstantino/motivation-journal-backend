@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_19_191946) do
+ActiveRecord::Schema.define(version: 2023_01_24_223343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 2023_01_19_191946) do
     t.float "time_interval"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.string "title", default: "Untitled"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "entry_keywords", force: :cascade do |t|
@@ -44,6 +47,7 @@ ActiveRecord::Schema.define(version: 2023_01_19_191946) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "entries", "users"
   add_foreign_key "entry_keywords", "entries"
   add_foreign_key "entry_keywords", "keywords"
 end
