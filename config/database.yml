@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: motivation_journal_backend_production
-  username: motivation_journal_backend
-  password: <%= ENV['MOTIVATION_JOURNAL_BACKEND_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
