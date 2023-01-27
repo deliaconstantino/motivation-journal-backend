@@ -1,10 +1,10 @@
 # Motivation Journal
 
-Motivation Journal is a Single Page Application that allows a user to set a timer for writing journal entries. Upon the completion of the timer, a user has the option to save or delete their journal entry.
+Motivation Journal is a journaling app that allows users to create, read, write, and delete journal entries. It leverages a Next.js client with a Ruby on Rails API server and fetches inspirational quotes from a third party API.
 
-This repo is the Rails API back end for the Motivation Journal App.
+This repo is the Rails API server.
 
-The front end of the app can be found in the Github Repo: motivation-journal-frontend at https://github.com/deliaconstantino/motivation-journal-frontend with specific instructions for running the front end. Note that the back end will need to be running through Rails server in order to populate information from the database while viewing the front end.
+The client is built with Next.js and can be found at [motivation-journal](https://github.com/deliaconstantino/motivation-journal).
 
 * Ruby version: '2.7.1'
 
