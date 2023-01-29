@@ -18,6 +18,15 @@ The client is built with Next.js and can be found at [motivation-journal](https:
 
 * Run `rails db:seed` to seed the database
 
+* Create a `.env` file with a JWT secret and Client URL domain:
+
+```
+# .env
+
+JWT_SECRET="add your secret here"
+CLIENT_URL_DOMAIN="add local client url, for example: localhost:3000"
+```
+
 * Finally fire up the Rails server and your backend should be all set.
 
 * Make sure to keep Rails server running while the app is in use, and check out the front end repo for front end information.
